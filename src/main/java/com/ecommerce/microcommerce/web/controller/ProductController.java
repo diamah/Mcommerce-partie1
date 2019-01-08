@@ -33,7 +33,6 @@ public class ProductController {
     //Récupérer la liste des produits
 
     @RequestMapping(value = "/Produits", method = RequestMethod.GET)
-
     public MappingJacksonValue listeProduits() {
 
         Iterable<Product> produits = productDao.findAll();
@@ -107,7 +106,6 @@ public class ProductController {
 
 
     //Calculer la marge de Gain
-
     @RequestMapping(value = "/AdminProduits", method = RequestMethod.GET)
     public Map<String, Integer> calculerMargeProduit() {
     	Map<String, Integer> result = new HashMap<>();
@@ -120,6 +118,14 @@ public class ProductController {
 		}
 
         return result;
+    }
+    
+  //Calculer la marge de Gain
+    @RequestMapping(value = "/ProduitsTries", method = RequestMethod.GET)
+    public List<Product> trierProduitsParOrdreAlphabetique() {
+    	List<Product> produits = productDao.findAllByOrderByNomAsc();
+
+        return produits;
     }
 
 }
